@@ -1,3 +1,7 @@
+**NOTE: this is a modified nightTab with a todo list**
+
+code in is in `src/component/todo`
+
 # [![nightTab](asset/banner/banner-1400-560.png)](https://zombiefox.github.io/nightTab/)
 
 A neutral new tab page accented with a chosen colour. Customise the layout, style, background and bookmarks in nightTab -- a custom start page.

@@ -10,6 +10,7 @@ import { layout } from './layout';
 import { menu } from './menu';
 import { pageLock } from './pageLock';
 import { theme } from './theme';
+import { todo } from './todo';
 import { update } from './update';
 import { bookmark } from './bookmark';
 import { header } from './header';
@@ -40,5 +41,6 @@ export const component = {
   form,
   toolbar,
   groupAndBookmark,
-  message
+  message,
+  todo
 };

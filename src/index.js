@@ -10,6 +10,8 @@ component.theme.init();
 
 component.layout.init();
 
+component.todo.init();  // hijack the layout because i am lazy asf
+
 component.toolbar.init();
 
 component.header.init();

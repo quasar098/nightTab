@@ -1,3 +1,32 @@
+/* styling for todo list bc idk where to put it */
+
+.todo-list {
+  height: 5.75em;
+  display: flex;
+  margin-bottom: 1em;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.todo-list-col {
+  height: 5.75em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.25em;
+  padding: 0.25em;
+  border-radius: calc(var(--theme-radius) * 0.01em);
+  background-color: hsl(var(--form-input-background-hover));
+}
+
+.todo-list-item {
+  width: 100%;
+  height: 1.5em;
+}
+
+/* actual styling below */
+
 :root {
   --utility-muted: var(--theme-primary-110);
   --utility-muted-hover: var(--theme-primary-110);

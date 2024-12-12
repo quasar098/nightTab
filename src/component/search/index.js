@@ -31,7 +31,7 @@ export const Search = function () {
       srOnly: true,
       action: () => {
         this.state();
-        this.performSearch();
+        // this.performSearch();
       }
     }),
     clear: new Button({
@@ -67,6 +67,8 @@ export const Search = function () {
 
   this.placeholder = () => {
 
+    // overridden by quasar098
+
     let placeholder = '';
 
     if (state.get.current().bookmark.show) {
@@ -95,7 +97,7 @@ export const Search = function () {
 
     }
 
-    this.element.input.text.placeholder = placeholder;
+    this.element.input.text.placeholder = 'Add reminder';
 
   };
 
