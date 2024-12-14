@@ -1,9 +1,9 @@
 {
-  "name": "__MSG_appName__",
-  "short_name": "__MSG_appShortName__",
-  "description": "__MSG_appDescription__",
-  "version": "7.6.0",
-  "manifest_version": 3,
+  "name": "nightTab with todo list",
+  "short_name": "nightTab+todo",
+  "description": "it has a todo list now",
+  "version": "1.0.1",
+  "manifest_version": 2,
   "default_locale": "en_GB",
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -13,5 +13,20 @@
     "48": "icon/icon-48.png",
     "128": "icon/icon-128.png",
     "512": "icon/icon-512.png"
-  }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{c2f5538c-181d-4477-8169-84774682799f}"
+    }
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>",
+    "https://*/*"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ]
 }

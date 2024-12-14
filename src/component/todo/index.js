@@ -126,7 +126,7 @@ todoComponent.sendIt = async () => {
     return;
   }
 
-  console.log(stuff);
+  console.log("upload success");
 }
 
 todoComponent.liveRender = (dontSendIt) => {
@@ -200,12 +200,15 @@ todoComponent.render = () => {
 todoComponent.fetchRemote = async () => {
   let stuff;
   try {
-    stuff = JSON.parse(await (await fetch(state.get.current().header.greeting.custom, {method: "GET"})).text());
-  } catch {
+    let texts = await (await fetch(state.get.current().header.greeting.custom, {method: "GET"})).text();
+    console.log(texts, 'downloaded');
+    stuff = JSON.parse(texts);
+  } catch (e) {
     let elm = document.createElement("p");
     elm.classList.add('epic-failure');
     elm.innerHTML = 'fail download';
     document.body.appendChild(elm);
+    console.log('fail dl', e);
     return;
   }
   todoComponent.items = Array.from(stuff);
