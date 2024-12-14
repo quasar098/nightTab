@@ -1,7 +1,7 @@
 {
-  "name": "nightTab",
-  "version": "7.6.0",
-  "description": "A neutral new tab page accented with a chosen colour. Customise the layout, style, background and bookmarks with nightTab.",
+  "name": "nightTab with todo",
+  "version": "1.0.0",
+  "description": "Modified nightTab with a todo list that syncs with a remote server.",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
@@ -20,12 +20,12 @@
     "links",
     "nightTab"
   ],
-  "author": "zombieFox",
+  "author": "quasar098",
   "license": "GPL-3",
   "bugs": {
-    "url": "https://github.com/zombieFox/nightTab/issues"
+    "url": "https://github.com/quasar098/nightTab"
   },
-  "homepage": "https://github.com/zombieFox/nightTab#readme",
+  "homepage": "https://github.com/quasar098/nightTab",
   "devDependencies": {
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
