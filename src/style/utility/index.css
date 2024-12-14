@@ -19,7 +19,7 @@
   justify-content: flex-start;
   gap: 0.25em;
   scrollbar-width: thin !important;
-  scrollbar-color: #303540 red; color: #22252d; /* hardcoding these in bc screw this giant color nonsense */
+  scrollbar-color: #303540 #22252d; /* hardcoding these in bc screw this giant color nonsense */
   padding: 0.25em;
   border-radius: calc(var(--theme-radius) * 0.01em);
   /*background-color: hsla(var(--theme-header-color-hsl-h), calc(var(--theme-header-color-hsl-s) * 1%), calc(var(--theme-header-color-hsl-l) * 1%), calc(var(--theme-header-color-opacity) / 100));*/
@@ -62,7 +62,13 @@
   line-height: 1.0;
 }
 
+.layout.shifting .delete-button:hover {
+  background-color: #c81619;
+}
 
+.layout.shifting .delete-button:hover:after {
+  background-color: #e93d41;
+}
 
 /* actual styling below */
 

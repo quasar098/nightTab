@@ -6,7 +6,7 @@ const todoComponent = {};
 
 todoComponent.colAmt = 1;
 
-todoComponent.items = [];
+todoComponent.items = JSON.parse(localStorage.getItem("todoCache")) ?? [];
 todoComponent.todoListBoxElements = [];
 
 todoComponent.generateTodoListBoxes = () => {
@@ -104,6 +104,11 @@ todoComponent.editIndex = (index) => {
   todoComponent.items = todoComponent.items.slice(0, index).concat([edited]).concat(todoComponent.items.slice(index+1))
 }
 
+todoComponent.addItem = (text) => {
+  todoComponent.items.push(text);
+  todoComponent.liveRender();
+}
+
 todoComponent.liveRender = () => {
   for (let be of todoComponent.todoListBoxElements) {
     Array.from(be.children).map(q => q.remove());
@@ -125,11 +130,7 @@ todoComponent.liveRender = () => {
       j++;
     }
   }
-}
-
-todoComponent.addItem = (text) => {
-  todoComponent.items.push(text);
-  todoComponent.liveRender();
+  localStorage.setItem("todoCache", JSON.stringify(todoComponent.items));
 }
 
 todoComponent.render = () => {
@@ -137,10 +138,13 @@ todoComponent.render = () => {
   const layout = document.body.getElementsByClassName('layout')[0];
 
   document.body.addEventListener('keydown', (e) => {
-    console.log(e.shiftKey);
     if (e.shiftKey) {
       layout.classList.add('shifting');
-    } else {
+    }
+  });
+
+  document.body.addEventListener('keyup', (e) => {
+    if (!e.shiftKey) {
       layout.classList.remove('shifting');
     }
   });
@@ -164,6 +168,8 @@ todoComponent.render = () => {
       }
     });
   }, 2);
+
+  todoComponent.liveRender();
 
 };
 
