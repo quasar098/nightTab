@@ -27,3 +27,7 @@ component.pageLock.init();
 component.keyboard.init();
 
 // component.menu.open();
+
+if (module.hot) {
+    module.hot.accept();
+}

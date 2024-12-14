@@ -38,15 +38,31 @@ todoComponent.createItemElement = (index, item) => {
   textContainer.appendChild(text);
 
   const buttons = document.createElement('div');
+  buttons.classList.add('todo-buttons');
+
+  const editButton = document.createElement('button');
+  editButton.classList.add('button');
+  editButton.classList.add('button-line');
+  editButton.addEventListener('click', (e) => {
+    todoComponent.editIndex(index);
+    todoComponent.liveRender();
+  });
+  editButton.innerHTML = '<span class="icon"><svg version="1.1" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.719 7.031l-1.828 1.828-3.75-3.75 1.828-1.828c0.375-0.375 1.031-0.375 1.406 0l2.344 2.344c0.375 0.375 0.375 1.031 0 1.406zM3 17.25l11.063-11.063 3.75 3.75-11.063 11.063h-3.75v-3.75z"></path></svg></span>'
+
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("button");
   deleteButton.classList.add("button-line");
-  deleteButton.classList.add("button-ty1");
+  deleteButton.classList.add("delete-button");
+  // deleteButton.classList.add("button-ty1");
   deleteButton.addEventListener('click', (e) => {
-    todoComponent.popIndex(index);
-    todoComponent.liveRender();
+    if (e.shiftKey || confirm(`Are you sure you want to delete "${todoComponent.items[index]}"`)) {
+      todoComponent.popIndex(index);
+      todoComponent.liveRender();
+    }
   });
   deleteButton.innerHTML = '<span class="icon"><svg version="1.1" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path></svg></span>';
+
+  buttons.appendChild(editButton);
   buttons.appendChild(deleteButton);
   elm.appendChild(textContainer);
   elm.appendChild(buttons);
@@ -66,6 +82,26 @@ todoComponent.popIndex = (index) => {
   }
 
   todoComponent.items = todoComponent.items.slice(0, index).concat(todoComponent.items.slice(index+1))
+}
+
+todoComponent.editIndex = (index) => {
+  const item = todoComponent.items[index];
+  const edited = prompt('Edit item', item);
+  if (edited === null) {
+    return;
+  }
+
+  index = index * 1;
+  if (index < 0) {
+    alert("what");
+    return;
+  }
+  if (index >= todoComponent.items.length) {
+    alert("what");
+    return;
+  }
+
+  todoComponent.items = todoComponent.items.slice(0, index).concat([edited]).concat(todoComponent.items.slice(index+1))
 }
 
 todoComponent.liveRender = () => {
@@ -98,8 +134,16 @@ todoComponent.addItem = (text) => {
 
 todoComponent.render = () => {
 
-
   const layout = document.body.getElementsByClassName('layout')[0];
+
+  document.body.addEventListener('keydown', (e) => {
+    console.log(e.shiftKey);
+    if (e.shiftKey) {
+      layout.classList.add('shifting');
+    } else {
+      layout.classList.remove('shifting');
+    }
+  });
 
   layout.insertBefore(todoComponent.generateTodoListBoxes(), layout.firstChild);
 
