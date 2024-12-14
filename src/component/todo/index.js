@@ -109,7 +109,31 @@ todoComponent.addItem = (text) => {
   todoComponent.liveRender();
 }
 
-todoComponent.liveRender = () => {
+todoComponent.sendIt = async () => {
+
+  let stuff;
+  try {
+    stuff = await (await fetch(state.get.current().header.greeting.custom, {
+      'method': 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      'body': JSON.stringify({data: todoComponent.items})
+    })).text();
+  } catch {
+    let elm = document.createElement("p");
+    elm.classList.add('epic-failure');
+    elm.innerHTML = 'fail upload';
+    document.body.appendChild(elm);
+    return;
+  }
+
+  console.log(stuff);
+}
+
+todoComponent.liveRender = (dontSendIt) => {
+  if (!dontSendIt) {
+    todoComponent.sendIt();
+  }
+
   for (let be of todoComponent.todoListBoxElements) {
     Array.from(be.children).map(q => q.remove());
   }
@@ -169,11 +193,28 @@ todoComponent.render = () => {
     });
   }, 2);
 
-  todoComponent.liveRender();
+  todoComponent.liveRender(true);
 
 };
 
+todoComponent.fetchRemote = async () => {
+  let stuff;
+  try {
+    stuff = JSON.parse(await (await fetch(state.get.current().header.greeting.custom, {method: "GET"})).text());
+  } catch {
+    let elm = document.createElement("p");
+    elm.classList.add('epic-failure');
+    elm.innerHTML = 'fail download';
+    document.body.appendChild(elm);
+    return;
+  }
+  todoComponent.items = Array.from(stuff);
+  todoComponent.liveRender(true);
+}
+
 todoComponent.init = () => {
+  todoComponent.fetchRemote();
+
   todoComponent.render();
 };
 
